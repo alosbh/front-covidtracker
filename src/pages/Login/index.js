@@ -8,19 +8,27 @@ import logoImg from '../../assets/logo.png';
 import styles from './styles'
 export default function Login(){
 
-return(
-<View style={styles.container}>
-    <View style={styles.header}>
-        <Image source={logoImg}/>
-    </View>
-    <View style={styles.form}>
-        <Text style={styles.title}>Entre com seu e-mail:</Text>
-        <TextInput style={styles.input} placeholder={"Email"}/>
-        <TouchableOpacity>
-            <Text>Não tenho cadastro</Text>
-        </TouchableOpacity>
-    </View>
+    const navigation = useNavigation();
 
-</View>
-    
-)}
+    function navigatetoRegister(){
+
+        navigation.navigate('Register');
+    }
+
+    return(
+    <View style={styles.container}>
+        <View style={styles.header}>
+            <Image source={logoImg}/>
+        </View>
+        <View style={styles.form}>
+            <Text style={styles.title}>Entre com seu e-mail:</Text>
+            <TextInput style={styles.input} placeholder={"Email"}/>
+            <TouchableOpacity onPress={navigatetoRegister}>
+                <Text>Não tenho cadastro</Text>
+            </TouchableOpacity>
+        </View>
+
+    </View>
+        
+    )
+}
