@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native'
 import {View,Image, Text, TouchableOpacity, TextInput,Alert} from 'react-native';
-import DropdownMenu from 'react-native-dropdown-menu';
+
 import api from '../../services/api';
 import logoImg from '../../assets/logo.png';
 

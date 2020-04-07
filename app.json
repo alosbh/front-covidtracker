@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HelloWorld",
-    "slug": "ExpoCovid",
+    "name": "Safe at Home",
+    "slug": "safeathome",
     "platforms": [
       "ios",
       "android",
