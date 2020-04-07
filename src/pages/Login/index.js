@@ -15,6 +15,10 @@ export default function Login(){
         navigation.navigate('Register');
     }
 
+    function Submit(){
+        navigation.navigate('Home');
+    }
+
     return(
     <View style={styles.container}>
         <View style={styles.header}>
@@ -23,8 +27,14 @@ export default function Login(){
         <View style={styles.form}>
             <Text style={styles.title}>Entre com seu e-mail:</Text>
             <TextInput style={styles.input} placeholder={"Email"}/>
+            <TextInput style={styles.input} placeholder={"Senha"}/>
             <TouchableOpacity onPress={navigatetoRegister}>
                 <Text>Não tenho cadastro</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.options}>
+        <TouchableOpacity onPress={Submit}>
+                <Text>Entrar</Text>
             </TouchableOpacity>
         </View>
 
