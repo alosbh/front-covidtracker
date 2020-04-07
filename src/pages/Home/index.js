@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 
 import {useNavigation} from '@react-navigation/native'
-import {View,Image, Text, TouchableOpacity, TextInput, Alert} from 'react-native';
+import {View,Image, Text, TouchableOpacity, TextInput, Alert, AsyncStorage} from 'react-native';
 import DialogInput from 'react-native-dialog-input';
 import moment from 'moment';
 
@@ -11,6 +11,10 @@ import logoImg from '../../assets/logo.png';
 
 import styles from './styles'
 export default function Home(){
+    
+    var userData;
+
+    var DateNow;
 
     const navigation = useNavigation();
 
@@ -20,8 +24,29 @@ export default function Home(){
 
     const [secondCheck, setsecondCheck] = useState('0');
 
-    var DateNow;
-    
+    const [Email, setEmail] = useState('');
+
+    const [LaborID, setLaborID] = useState('');
+
+    const [Name, setName] = useState('');
+
+    useEffect(()=>{
+        setUserVariables();
+        
+    },[]);
+
+    async function setUserVariables(){
+        userData = await AsyncStorage.getItem('user');
+        const Credentials = JSON.parse(userData);
+        
+        setEmail(Credentials.Email);
+        setLaborID(parseInt(Credentials.LaborID));
+        setName(Credentials.Name);
+        
+    }
+
+
+
     function getTime(){
         
         var time = moment()        
@@ -49,21 +74,35 @@ export default function Home(){
             turnCheckDialog(true);
         }
     }
-    async function handleCheck(e){
+    async function handleCheck(Measure){
 
         DateNow = getTime();
         if(DateNow=>16){
-            setsecondCheck(e);
+            setsecondCheck(Measure);
+
         }
         else{
-            setfirstCheck(e);
+            setfirstCheck(Measure);
         }
+
+        
+        var Time = moment();
+        data={
+            LaborID,
+            Measure,
+            Time
+
+        }
+        const response = await api.post('/bodycheck',data);
         
         
         turnCheckDialog(false);
         
         
 
+    }
+    async function GetUserCredentials(){
+        
     }
     return(
     <View style={styles.container}>
@@ -74,7 +113,7 @@ export default function Home(){
         <View style={styles.body}>
             <Text>Como você está se sentindo hoje?</Text>
             <View style={styles.thumbsbox}>
-                <TouchableOpacity>
+                <TouchableOpacity >
                     <Feather name={'thumbs-up'}/>
                 </TouchableOpacity>
                 <TouchableOpacity>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Feather} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native'
-import {View,Image, Text, TouchableOpacity, TextInput,Alert} from 'react-native';
+import {View,Image, Text, TouchableOpacity, TextInput,Alert, AsyncStorage} from 'react-native';
 import api from '../../services/api';
 import logoImg from '../../assets/logo.png';
 
@@ -14,11 +14,25 @@ export default function Login(){
 
     const [Password, setPassword] = useState('');
 
-    function navigatetoRegister(){
+    async function navigatetoRegister(){
 
         navigation.navigate('Register');
+        
     }
 
+    async function storeUserCredentials(responseData){
+
+        
+        let user = {
+            LaborID: responseData.data.user.id,
+            Name: responseData.data.user.Name,
+            Email: responseData.data.user.Email,
+            
+        }
+        AsyncStorage.setItem('user',JSON.stringify(user));
+
+
+    }
     async function Submit(){
         
         data= {Email, Password}
@@ -27,6 +41,8 @@ export default function Login(){
             const response = await api.post('Labor/login',data);
             
             if(response.status===200){
+
+                storeUserCredentials(response);
                 Alert.alert(
                     '',
                     'Login realizado com sucesso',
