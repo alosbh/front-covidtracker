@@ -10,6 +10,7 @@ container:{
 
 },
 header:{
+    paddingTop:50,
     alignItems: "center"
 
 
@@ -17,7 +18,7 @@ header:{
 form:{
     flexDirection: 'column',
     alignItems:'center',
-    marginTop: 20
+    
 
 
 
@@ -40,6 +41,26 @@ input:{
     backgroundColor:'#FFF',
     padding:10,
     margin:10
+    
+},
+options:{
+    alignItems:'center',
+    marginTop:40
+},
+submit:{
+    borderWidth:2,
+    borderColor:'#000',
+    borderRadius:5,
+    width:250,
+    height:40,
+    alignItems:'center',
+    backgroundColor:'#e7e7e7',
+
+},
+submitText:{
+    fontWeight:'bold',
+    fontSize: 18,
+    padding:5
     
 }
 

@@ -111,28 +111,40 @@ return(
             value={BirthDate}
             onChangeText={text=> setBirthDate(text)}   
         />
-        <TextInput
-            style={styles.input} 
-            placeholder={"Departamento"}
-            value={Department}
-            onChangeText={text=> setDepartment(text)}   
-        />
-        <TextInput
-            style={styles.input} 
-            placeholder={"Site"}
-            value={Site}
-            onChangeText={text=> setSite(text)}   
-        />
-        
+        <View style={styles.combobox}>
+            <TextInput
+                style={styles.inputCombo} 
+                placeholder={"Departamento"}
+                value={Department}
+                onChangeText={text=> setDepartment(text)}   
+            />
+            <TextInput
+                style={styles.inputCombo} 
+                placeholder={"Site"}
+                value={Site}
+                onChangeText={text=> setSite(text)}   
+            />
+        </View>
         
         
     </View>
     <View style={styles.options}>
-        <TouchableOpacity onPress={navigatetoBack}>
-            <Text>Voltar</Text>
+        <TouchableOpacity
+        style={styles.button}
+        onPress={navigatetoBack}>
+            <Feather 
+            size={20}
+            name={'arrow-left'}/>
+            <Text style={styles.buttonText}>Voltar</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleSubmit}>
-            <Text>Confirmar</Text>
+        <TouchableOpacity 
+        style={styles.button}
+        onPress={handleSubmit}>
+            <Text style={styles.buttonText}>Confirmar</Text>
+            <Feather 
+            size={20}
+            name={'arrow-right'}/>
+            
         </TouchableOpacity>
     </View>
 

@@ -20,9 +20,9 @@ export default function Home(){
 
     const [CheckDialog, turnCheckDialog] = useState(false);
 
-    const [firstCheck, setfirstCheck] = useState('0');
+    const [firstCheck, setfirstCheck] = useState('Pendente');
 
-    const [secondCheck, setsecondCheck] = useState('0');
+    const [secondCheck, setsecondCheck] = useState('Pendente');
 
     const [Email, setEmail] = useState('');
 
@@ -87,7 +87,7 @@ export default function Home(){
 
         
         var Time = moment();
-        data={
+        let data={
             LaborID,
             Measure,
             Time
@@ -108,26 +108,40 @@ export default function Home(){
     <View style={styles.container}>
         <View style={styles.header}>
             <Image source={logoImg}/>
-            <Text>Terça-Feira. 7 de Abril de 2020</Text>
+            <Text style={styles.headerText}>Bem vindo, 
+                <Text style={styles.headerTextBold}> {Name}</Text>.
+            </Text>
         </View>
         <View style={styles.body}>
-            <Text>Como você está se sentindo hoje?</Text>
+            <Text style={styles.title}>Como você está se sentindo hoje?</Text>
             <View style={styles.thumbsbox}>
                 <TouchableOpacity >
-                    <Feather name={'thumbs-up'}/>
+                    <Feather 
+                    size={60}
+                    color={'#32a852'}
+                    name={'thumbs-up'}/>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Feather name={'thumbs-down'}/>
+                    <Feather
+                    size={60}
+                    color={'#a83232'}
+                    name={'thumbs-down'}/>
                 </TouchableOpacity>
             </View>
+
+            <Text style={styles.textDescription}>Para sua segurança, pedimos que faça a medição de temperatura duas vezes ao dia.</Text>
             
             <View style={styles.checkbox}>
-                <TouchableOpacity onPress={handlefirstCheck}>
+                <TouchableOpacity
+                style={styles.inputbutton}
+                onPress={handlefirstCheck}>
                     <Text>1ª Medição (00:00 as 16:00):</Text>
                     <Feather name={'thermometer'}/>
                     <Text>{firstCheck}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handlesecondCheck}>
+                <TouchableOpacity
+                style={styles.inputbutton}
+                onPress={handlesecondCheck}>
                     <Text>2ª Medição (16:00 as 00:00):</Text>
                     <Feather name={'thermometer'}/>
                     <Text>{secondCheck}</Text>
@@ -137,7 +151,7 @@ export default function Home(){
         </View>
         <DialogInput isDialogVisible={CheckDialog}
                     title={""}
-                    message={"Insira sua medição de temperatura"}
+                    message={"Insira sua medição de temperatura."}
                     hintInput ={"Ex: 36,8"}
                     submitInput={ (inputText) => {handleCheck(inputText)} }
                     closeDialog={ () => {turnCheckDialog(false)}}>

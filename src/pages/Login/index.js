@@ -35,7 +35,7 @@ export default function Login(){
     }
     async function Submit(){
         
-        data= {Email, Password}
+        const data= {Email, Password}
 
         try {
             const response = await api.post('Labor/login',data);
@@ -94,8 +94,8 @@ export default function Login(){
             </TouchableOpacity>
         </View>
         <View style={styles.options}>
-        <TouchableOpacity onPress={Submit}>
-                <Text>Entrar</Text>
+        <TouchableOpacity style={styles.submit} onPress={Submit}>
+                <Text style={styles.submitText}>Entrar</Text>
             </TouchableOpacity>
         </View>
 
